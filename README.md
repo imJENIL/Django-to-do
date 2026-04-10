@@ -14,31 +14,81 @@ This is a sample project that a novice django developer can use to get started.
 - Simple UI
 - Blazing fast
 
-## Setup
+---
+
+## Setup (Without Docker)
 
 - Download the files from this repo
 - Change the directory to the folder where you downloaded files
-- For installing required packages, execute the following command in terminal:
 
-    ```bash
-    $pip install -r requirements.txt
-    ```
+Install dependencies:
 
-- After successful installation execute the following commands:
+```bash
+pip install -r requirements.txt
+```
 
-    ```bash
-    $python manage.py migrate
-    $python manage.py runserver
-    ```
+Run migrations and start server:
 
-- Visit `127.0.0.1:8000` in your browser to enjoy the awesome app!
+```bash
+python manage.py migrate
+python manage.py runserver
+```
 
-Built with ♥ by [`Omkar Pathak`](http://www.omkarpathak.in/)
+Open in browser:
+```
+http://127.0.0.1:8000
+```
 
-# Donation
+---
 
-If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares :)
+## 🐳 Docker Setup
 
-| PayPal | <a href="https://paypal.me/omkarpathak27" target="_blank"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" alt="Donate via PayPal!" title="Donate via PayPal!" /></a> |
-|:-------------------------------------------:|:-------------------------------------------------------------:|
-| ₹ (INR)  | <a href="https://www.instamojo.com/@omkarpathak/" target="_blank"><img src="https://www.soldermall.com/images/pic-online-payment.jpg" alt="Donate via Instamojo" title="Donate via instamojo" /></a> |
+### 1. Build Docker Image
+
+```bash
+docker build -t django-todo .
+```
+
+### 2. Run Container
+
+```bash
+docker run -d -p 8000:8000 --name django-app django-todo
+```
+
+### 3. Access Application
+
+```
+http://localhost:8000
+```
+
+---
+
+## 🧹 Manage Container
+
+Stop container:
+
+```bash
+docker stop django-app
+```
+
+Remove container:
+
+```bash
+docker rm django-app
+```
+
+---
+
+## ⚠️ Note
+
+- This project uses SQLite
+- Data is stored inside the container
+- If the container is removed → data will be lost
+
+👉 For production, use PostgreSQL with Docker Compose
+
+---
+
+## Credits
+
+Original project by Omkar Pathak
